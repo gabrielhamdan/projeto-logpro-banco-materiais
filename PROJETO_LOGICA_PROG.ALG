@@ -2,7 +2,7 @@ Algoritmo "projeto_logica_prog"
 
 Var
    opMenu,exibirMenu,opInvalida:inteiro
-   pesquisa,querSair:caracter
+   usuarios:vetor[0..10,0..1] de caracter
 
 Inicio
 
@@ -51,6 +51,9 @@ inicio
 fimprocedimento
 
 procedimento mostrarMenuPesquisa
+Var
+   pesquisa:caracter
+
 inicio
    escreval("#########################################")
    escreval("#   B A N C O  D E  M A T E R I A I S   #")
@@ -77,6 +80,9 @@ inicio
 fimprocedimento
 
 procedimento mostrarMenuSair
+Var
+   querSair:caracter
+
 Inicio
    exibirMenu <- 1
    opInvalida <- 0
@@ -116,6 +122,56 @@ Inicio
 fimprocedimento
 
 // chama menu inicial
-mostrarMenuInicial
+//mostrarMenuInicial
+
+//////////////////////////////////////////////////////////
+////////////////////BLOCO DE AUTENTICACAO/////////////////
+//////////////////////////////////////////////////////////
+procedimento lerDadosUsuario
+Var
+   i,usuarioRejeitado:inteiro
+   usuario,senha:caracter
+
+Inicio
+   i <- 0
+   usuarioRejeitado <- 1
+   usuarios[10,0] <- "gabrielhamdan"
+   usuarios[10,1] <- "123"
+
+   escreval("USUÁRIO: ")
+   leia(usuario)
+   escreval("SENHA: ")
+   leia(senha)
+   limpatela
+
+   PARA i de 0 ATE 10 FACA
+      SE usuario = usuarios[i,0] ENTAO
+         SE senha = usuarios[i,1] ENTAO
+            limpatela
+            usuarioRejeitado <- 0
+            autenticarUsuario
+         FIMSE
+      FIMSE
+   FIMPARA
+
+   SE usuarioRejeitado = 1 ENTAO
+      rejeitarUsuario
+   FIMSE
+
+fimprocedimento
+
+procedimento autenticarUsuario
+Inicio
+   escreval("Usuário autenticado!")
+fimprocedimento
+
+procedimento rejeitarUsuario
+Inicio
+   escreval("Usuário ou senha inválido!")
+fimprocedimento
+
+lerDadosUsuario
+/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
 
 Fimalgoritmo
